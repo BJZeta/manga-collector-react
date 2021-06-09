@@ -1,8 +1,11 @@
 import express from "express";
 import dotenv from "dotenv";
 import path from "path";
+import connectDB from "./config/db.js";
 
 dotenv.config();
+
+connectDB();
 
 const app = express();
 
@@ -27,6 +30,7 @@ const PORT = process.env.PORT || 5000;
 app.listen(
   PORT,
   console.log(
-    `Server is running on PORT: ${PORT} in ${process.env.NODE_ENV} Mode...`
+    `Server is running on PORT: ${PORT} in ${process.env.NODE_ENV} mode...`
   )
 );
+
