@@ -1,36 +1,23 @@
 import mongoose from "mongoose";
 
 const mangaSchema = mongoose.Schema({
-  name: {
-    type: String,
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
     required: true,
+    ref: "User",
   },
-  volume: {
-    type: Number,
-    required: true,
-  },
-  thumbnail: {
-    type: String,
-    required: true,
-  },
-  genre: [
+  collection: [
     {
-      type: String,
+      name: { type: String, required: true },
+      volume: { type: Number, required: true },
+      image: { type: String, required: true },
+      pageCount: { type: Number, required: true },
+      publisher: { type: String, required: true },
+      author: { type: String, required: true },
+      favorite: { type: Boolean, default: false },
+      hasRead: { type: Boolean, default: false },
     },
   ],
-  pageCount: {
-    type: Number,
-  },
-  haveRead: {
-    type: Boolean,
-    required: true,
-    default: false,
-  },
-  favorite: {
-    type: Boolean,
-    required: true,
-    default: false,
-  },
 });
 
 const Manga = mongoose.model("Manga", mangaSchema);
