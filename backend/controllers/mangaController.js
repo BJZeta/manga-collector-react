@@ -21,7 +21,7 @@ const addManga = asyncHandler(async (req, res) => {
 
 //GET REQ // LOOK UP MANGA COLLECTION // PRIVATE
 const getCollection = asyncHandler(async (req, res) => {
-  const collection = await Manga.find({ user: req.params.id });
+  const collection = await Manga.find({ user: req.params.userId });
 
   if (collection) {
     res.json(collection);
