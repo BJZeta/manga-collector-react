@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import path from "path";
 import connectDB from "./config/db.js";
 import userRoutes from "./routes/userRoutes.js";
-import mangaRoutes from "./routes/mangaRoutes.js"
+import bookRoutes from "./routes/bookRoutes.js"
 
 dotenv.config();
 
@@ -14,7 +14,7 @@ const app = express();
 app.use(express.json());
 
 app.use("/api/users", userRoutes);
-app.use("/api/manga", mangaRoutes)
+app.use("/api/book", bookRoutes)
 
 const __dirname = path.resolve();
 
