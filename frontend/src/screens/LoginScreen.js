@@ -16,6 +16,12 @@ const LoginScreen = ({ location, history }) => {
 
   const redirect = location.search ? location.search.split("=")[1] : "/";
 
+  useEffect(() => {
+    if (userInfo) {
+      history.push(redirect);
+    }
+  }, [history, redirect, userInfo]);
+
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(login(email, password));
@@ -51,7 +57,7 @@ const LoginScreen = ({ location, history }) => {
           />
         </Form.Group>
 
-        <Button type="submit" variant="primary">
+        <Button className="mt-2" type="submit" variant="primary">
           Sign In
         </Button>
       </Form>
