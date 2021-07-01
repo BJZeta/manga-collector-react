@@ -1,6 +1,7 @@
 import React from "react";
 import { Container } from "react-bootstrap";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import Header from "./components/Header";
 import HomeScreen from "./screens/HomeScreen";
 import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
@@ -8,6 +9,7 @@ import RegisterScreen from "./screens/RegisterScreen";
 function App() {
   return (
     <Router>
+      <Header />
       <Container>
         <Route path="/" component={HomeScreen} exact />
         <Route path="/login" component={LoginScreen} />

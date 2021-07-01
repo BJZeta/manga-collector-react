@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Nav, Navbar, Container, NavDropdown } from "react-bootstrap";
+import { Nav, Navbar, Container } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { logout } from "../actions/userActions";
 
@@ -16,12 +16,35 @@ const Header = () => {
 
   return (
     <header>
-      <Navbar variant="dark" expand="lg" collapseOnSelect>
-          <Container>
-              <LinkContainer to="/">
-                  <Navbar.Brand></Navbar.Brand>
+      <Navbar bg="dark" variant="dark" collapseOnSelect>
+        <Container>
+          <LinkContainer to="/">
+            <Navbar.Brand>Book-Base</Navbar.Brand>
+          </LinkContainer>
+          {userInfo ? (
+            <Nav className="ml-auto">
+              <LinkContainer to="/search">
+                <Nav.Link>Search</Nav.Link>
               </LinkContainer>
-          </Container>
+
+              <LinkContainer to="/profile">
+                <Nav.Link>{userInfo.username}</Nav.Link>
+              </LinkContainer>
+
+              <Nav.Item onClick={logoutHandler}>Log Out</Nav.Item>
+            </Nav>
+          ) : (
+            <Nav className="ml-auto">
+              <LinkContainer to="/search">
+                <Nav.Link>Search</Nav.Link>
+              </LinkContainer>
+
+              <LinkContainer to="/login">
+                <Nav.Link>Log In</Nav.Link>
+              </LinkContainer>
+            </Nav>
+          )}
+        </Container>
       </Navbar>
     </header>
   );
