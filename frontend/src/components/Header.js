@@ -31,7 +31,10 @@ const Header = () => {
                 <Nav.Link>{userInfo.username}</Nav.Link>
               </LinkContainer>
 
-              <Nav.Item onClick={logoutHandler}>Log Out</Nav.Item>
+              <Nav.Link onClick={logoutHandler}>
+                Log Out
+              </Nav.Link>
+              
             </Nav>
           ) : (
             <Nav className="ml-auto">
