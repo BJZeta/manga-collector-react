@@ -24,22 +24,21 @@ const Header = () => {
           {userInfo ? (
             <Nav className="ml-auto">
               <LinkContainer to="/search">
-                <Nav.Link>Search</Nav.Link>
+                <Nav.Link>
+                  <i class="fas fa-search"></i>
+                </Nav.Link>
               </LinkContainer>
 
               <LinkContainer to="/profile">
-                <Nav.Link>{userInfo.username}</Nav.Link>
+                <Nav.Link>Profile</Nav.Link>
               </LinkContainer>
 
-              <Nav.Link onClick={logoutHandler}>
-                Log Out
-              </Nav.Link>
-              
+              <Nav.Link onClick={logoutHandler}>Log Out</Nav.Link>
             </Nav>
           ) : (
             <Nav className="ml-auto">
               <LinkContainer to="/search">
-                <Nav.Link>Search</Nav.Link>
+                <Nav.Link><i class="fas fa-search"></i></Nav.Link>
               </LinkContainer>
 
               <LinkContainer to="/login">
