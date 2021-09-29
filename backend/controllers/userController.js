@@ -43,7 +43,7 @@ const registerUser = asyncHandler(async (req, res) => {
       _id: user._id,
       username: user.username,
       email: user.email,
-      token: generateToken(user._id)
+      token: generateToken(user._id),
     });
   } else {
     res.status(400);
@@ -51,4 +51,20 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 });
 
-export { registerUser, authUser };
+//GET REQ // GET USER INFO // PRIVATE
+const getUserProfile = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id);
+
+  if (user) {
+    res.json({
+      _id: user._id,
+      username: user.username,
+      email: user.email,
+    });
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
+});
+
+export { registerUser, authUser, getUserProfile };
