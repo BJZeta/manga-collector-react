@@ -10,6 +10,7 @@ import {
   USER_DETAILS_RESET,
   USER_DETAILS_SUCCESS,
   USER_DETAILS_FAIL,
+  USER_DETAILS_REQUEST,
 } from "../constants/userConstants";
 
 export const login = (email, password) => async (dispatch) => {
@@ -90,7 +91,7 @@ export const register = (username, email, password) => async (dispatch) => {
 export const getUserDetails = (id) => async (dispatch, getState) => {
   try {
     dispatch({
-      type: USER_DETAILS_RESET,
+      type: USER_DETAILS_REQUEST,
     });
 
     const {
