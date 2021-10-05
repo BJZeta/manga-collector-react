@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { Button, FormControl, InputGroup, Row } from "react-bootstrap";
+import SearchResults from "../components/SearchResults";
 
 const SearchScreen = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [queryType, setQueryType] = useState("title");
+
+  ////setup handler for searching books
 
   return (
     <>
@@ -14,7 +17,7 @@ const SearchScreen = () => {
             aria-describedby="searchbar"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search a novel or author"
+            placeholder="Search a novel by title, author, or ISBN"
           />
           <Button onClick={(e) => setQueryType(e.target.value)} value="title">
             Title
@@ -30,9 +33,11 @@ const SearchScreen = () => {
 
       <Row className="mt-4">
         <h1>
-          {searchQuery
-            ? `Search ${searchQuery} under ${queryType}`
-            : "Wow, such empty"}
+          {searchQuery ? (
+            <SearchResults searchQuery={searchQuery} queryType={queryType} />
+          ) : (
+            "Wow, such empty"
+          )}
         </h1>
       </Row>
     </>
