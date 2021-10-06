@@ -4,9 +4,11 @@ import SearchResults from "../components/SearchResults";
 
 const SearchScreen = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [queryType, setQueryType] = useState("title");
+  const [queryType, setQueryType] = useState("");
 
-  ////setup handler for searching books
+  const handleSearchBook = (searchTerm) => {
+    setQueryType(searchTerm);
+  };
 
   return (
     <>
@@ -19,13 +21,22 @@ const SearchScreen = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search a novel by title, author, or ISBN"
           />
-          <Button onClick={(e) => setQueryType(e.target.value)} value="title">
+          <Button
+            onClick={(e) => handleSearchBook(e.target.value)}
+            value="title"
+          >
             Title
           </Button>
-          <Button onClick={(e) => setQueryType(e.target.value)} value="author">
+          <Button
+            onClick={(e) => handleSearchBook(e.target.value)}
+            value="author"
+          >
             Publisher
           </Button>
-          <Button onClick={(e) => setQueryType(e.target.value)} value="isbn">
+          <Button
+            onClick={(e) => handleSearchBook(e.target.value)}
+            value="isbn"
+          >
             ISBN
           </Button>
         </InputGroup>
@@ -33,7 +44,7 @@ const SearchScreen = () => {
 
       <Row className="mt-4">
         <h1>
-          {searchQuery ? (
+          {queryType !== "" ? (
             <SearchResults searchQuery={searchQuery} queryType={queryType} />
           ) : (
             "Wow, such empty"

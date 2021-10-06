@@ -6,11 +6,13 @@ import {
   userLoginReducer,
   userRegisterReducer,
 } from "./reducers/userReducers";
+import { searchBooksReducer } from "./reducers/bookReducers";
 
 const reducer = combineReducers({
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
   userDetails: userDetailsReducer,
+  searchedBooks: searchBooksReducer,
 });
 
 const userLocalStorage = localStorage.getItem("userInfo")
