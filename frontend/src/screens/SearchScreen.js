@@ -1,13 +1,20 @@
 import React, { useState } from "react";
 import { Button, FormControl, InputGroup, Row } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 import SearchResults from "../components/SearchResults";
+import { searchBooks } from "../actions/bookActions";
 
 const SearchScreen = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [queryType, setQueryType] = useState("");
 
-  const handleSearchBook = (searchTerm) => {
-    setQueryType(searchTerm);
+  const dispatch = useDispatch();
+
+  const searchedBooks = useSelector((state) => state.searchedBooks);
+  const { loading, error, books } = searchedBooks;
+
+  const handleSearchBook = (type) => {
+    dispatch(searchBooks(searchQuery, type));
   };
 
   return (
@@ -23,15 +30,15 @@ const SearchScreen = () => {
           />
           <Button
             onClick={(e) => handleSearchBook(e.target.value)}
-            value="title"
+            value="intitle"
           >
             Title
           </Button>
           <Button
             onClick={(e) => handleSearchBook(e.target.value)}
-            value="author"
+            value="inauthor"
           >
-            Publisher
+            Author
           </Button>
           <Button
             onClick={(e) => handleSearchBook(e.target.value)}
@@ -44,11 +51,9 @@ const SearchScreen = () => {
 
       <Row className="mt-4">
         <h1>
-          {queryType !== "" ? (
-            <SearchResults searchQuery={searchQuery} queryType={queryType} />
-          ) : (
-            "Wow, such empty"
-          )}
+          {loading && "Loading..."}
+          {error && error}
+          {books ? "Books searched!" : "Wow, such empty"}
         </h1>
       </Row>
     </>

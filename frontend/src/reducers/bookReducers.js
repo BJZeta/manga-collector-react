@@ -4,12 +4,12 @@ import {
   SEARCH_BOOKS_SUCCESS,
 } from "../constants/booksContants";
 
-export const searchBooksReducer = (state = { searchedBooks: [] }, action) => {
+export const searchBooksReducer = (state = { books: {} }, action) => {
   switch (action.type) {
     case SEARCH_BOOKS_REQUEST:
-      return { loading: true, searchedBooks: [] };
+      return { loading: true, books: {} };
     case SEARCH_BOOKS_SUCCESS:
-      return { loading: false, searchedBooks: action.payload };
+      return { loading: false, books: action.payload };
     case SEARCH_BOOKS_FAIL:
       return { loading: false, error: action.payload };
     default:
