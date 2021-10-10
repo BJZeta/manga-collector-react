@@ -10,7 +10,7 @@ export const searchBooks = (query, type) => async (dispatch) => {
     dispatch({ type: SEARCH_BOOKS_REQUEST });
 
     const { data } = await axios.get(
-      `https://www.googleapis.com/books/v1/volumes?q=!${type}:${query}`
+      `https://www.googleapis.com/books/v1/volumes?q=!${type}:${query}&maxResults=40`
     );
 
     dispatch({

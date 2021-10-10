@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, FormControl, InputGroup, Row } from "react-bootstrap";
+import { Button, Col, FormControl, InputGroup, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import SearchResults from "../components/SearchResults";
 import { searchBooks } from "../actions/bookActions";
@@ -14,46 +14,56 @@ const SearchScreen = () => {
   const { loading, error, books } = searchedBooks;
 
   const handleSearchBook = (type) => {
-    dispatch(searchBooks(searchQuery, type));
+    return dispatch(searchBooks(searchQuery, type));
   };
 
   return (
     <>
       <Row className="mt-5">
-        <InputGroup size="lg">
-          <FormControl
-            aria-label="Search"
-            aria-describedby="searchbar"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search a novel by title, author, or ISBN"
-          />
+        <Col lg={8}>
+          <InputGroup size="lg">
+            <FormControl
+              aria-label="Search"
+              aria-describedby="searchbar"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search a novel by title, author, or ISBN"
+            />
+            <Button variant="danger" onClick={() => setSearchQuery("")}>
+              X
+            </Button>
+          </InputGroup>
+        </Col>
+        <Col lg={4} className="text-center">
           <Button
             onClick={(e) => handleSearchBook(e.target.value)}
             value="intitle"
+            className="mx-2"
           >
             Title
           </Button>
           <Button
             onClick={(e) => handleSearchBook(e.target.value)}
             value="inauthor"
+            className="mx-2"
           >
             Author
           </Button>
           <Button
             onClick={(e) => handleSearchBook(e.target.value)}
             value="isbn"
+            className="mx-2"
           >
             ISBN
           </Button>
-        </InputGroup>
+        </Col>
       </Row>
 
       <Row className="mt-4">
         <h1>
           {loading && "Loading..."}
           {error && error}
-          {books ? "Books searched!" : "Wow, such empty"}
+          {books.items ? <SearchResults data={books} /> : "Wow, such empty"}
         </h1>
       </Row>
     </>
