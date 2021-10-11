@@ -13,9 +13,11 @@ export const searchBooks = (query, type) => async (dispatch) => {
       `https://www.googleapis.com/books/v1/volumes?q=!${type}:${query}&maxResults=40`
     );
 
+    const items = data.items;
+
     dispatch({
       type: SEARCH_BOOKS_SUCCESS,
-      payload: data,
+      payload: items,
     });
   } catch (error) {
     dispatch({

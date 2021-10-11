@@ -7,7 +7,7 @@ import {
 export const searchBooksReducer = (state = { books: {} }, action) => {
   switch (action.type) {
     case SEARCH_BOOKS_REQUEST:
-      return { loading: true, books: {} };
+      return { loading: true, books: [] };
     case SEARCH_BOOKS_SUCCESS:
       return { loading: false, books: action.payload };
     case SEARCH_BOOKS_FAIL:

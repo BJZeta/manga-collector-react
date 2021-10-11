@@ -34,7 +34,7 @@ const SearchScreen = () => {
             </Button>
           </InputGroup>
         </Col>
-        <Col lg={4} className="text-center">
+        <Col lg={4} className="text-center mt-2">
           <Button
             onClick={(e) => handleSearchBook(e.target.value)}
             value="intitle"
@@ -63,7 +63,7 @@ const SearchScreen = () => {
         <h1>
           {loading && "Loading..."}
           {error && error}
-          {books.items ? <SearchResults data={books} /> : "Wow, such empty"}
+          {books[0] ? <SearchResults books={books} /> : "Wow, such empty"}
         </h1>
       </Row>
     </>
