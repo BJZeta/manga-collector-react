@@ -6,12 +6,12 @@ const SearchResults = ({ books }) => {
   console.log(books);
 
   return (
-    <Row className="mx-auto">
+    <Row className="mx-auto  align-items-center">
       {books &&
         books.map(
           (book) =>
             book.volumeInfo.imageLinks && (
-              <Col lg={2} md={3} xs={6}>
+              <Col xl={2} md={3} xs={6} className="searched-books mt-2">
                 <Card
                   key={book.id}
                   style={{ maxWidth: "10rem" }}
@@ -23,7 +23,9 @@ const SearchResults = ({ books }) => {
                     src={book.volumeInfo.imageLinks.thumbnail}
                     alt={book.volumeInfo.title}
                   />
-                  <Card.Title>{book.volumeInfo.title}</Card.Title>
+                  <Card.Title className="mb-0">
+                    {book.volumeInfo.title}
+                  </Card.Title>
                 </Card>
               </Col>
             )

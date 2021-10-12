@@ -1,0 +1,8 @@
+.searched-books:hover {
+  cursor: pointer;
+}
+
+.searched-books:hover .card-title {
+  background-color: #ff5c5c;
+  color: white;
+}

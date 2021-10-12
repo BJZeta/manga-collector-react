@@ -66,9 +66,9 @@ const SearchScreen = () => {
 
       <Row className="mt-4">
         <h1>
-          {loading && "Loading..."}
           {error && error}
-          {books[0] ? <SearchResults books={books} /> : "Wow, such empty"}
+          {loading && "Loading...."}
+          {books[0] && <SearchResults books={books} />}
         </h1>
       </Row>
     </>
