@@ -2,6 +2,7 @@ import axios from "axios";
 import {
   SEARCH_BOOKS_FAIL,
   SEARCH_BOOKS_REQUEST,
+  SEARCH_BOOKS_RESET,
   SEARCH_BOOKS_SUCCESS,
 } from "../constants/booksContants";
 
@@ -28,4 +29,8 @@ export const searchBooks = (query, type) => async (dispatch) => {
           : error.message,
     });
   }
+};
+
+export const resetSearch = () => (dispatch) => {
+  dispatch({ type: SEARCH_BOOKS_RESET });
 };

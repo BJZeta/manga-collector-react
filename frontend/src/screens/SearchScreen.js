@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Col, FormControl, InputGroup, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import SearchResults from "../components/SearchResults";
-import { searchBooks } from "../actions/bookActions";
+import { resetSearch, searchBooks } from "../actions/bookActions";
 
 const SearchScreen = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -17,6 +17,11 @@ const SearchScreen = () => {
     return dispatch(searchBooks(searchQuery, type));
   };
 
+  const handleResetSearch = () => {
+    setSearchQuery("");
+    dispatch(resetSearch());
+  };
+
   return (
     <>
       <Row className="mt-5">
@@ -29,7 +34,7 @@ const SearchScreen = () => {
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search a novel by title, author, or ISBN"
             />
-            <Button variant="danger" onClick={() => setSearchQuery("")}>
+            <Button variant="danger" onClick={handleResetSearch}>
               X
             </Button>
           </InputGroup>
