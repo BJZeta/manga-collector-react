@@ -6,3 +6,7 @@
   background-color: #ff5c5c;
   color: white;
 }
+
+.modal-container {
+  overflow-y: scroll;
+}
