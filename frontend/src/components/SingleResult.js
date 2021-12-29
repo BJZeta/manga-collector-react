@@ -5,7 +5,7 @@ import SearchModal from "./SearchModal";
 const SingleResult = ({ book }) => {
   const [show, setShow] = useState(false);
 
-  const handleShow = () => setShow(true);
+  // const handleShow = () => setShow(true);
 
   return (
     <Col
@@ -13,7 +13,7 @@ const SingleResult = ({ book }) => {
       sm={4}
       xs={6}
       className="searched-books mt-2"
-      onClick={handleShow}
+      onClick={() => setShow(!show)}
     >
       {book.volumeInfo.imageLinks && (
         <Card
@@ -30,10 +30,10 @@ const SingleResult = ({ book }) => {
         </Card>
       )}
       <SearchModal
+        onClose={() => setShow(!show)}
         book={book.volumeInfo}
         show={show}
         key={`${book.id}:modal`}
-        setShow={setShow}
       />
     </Col>
   );

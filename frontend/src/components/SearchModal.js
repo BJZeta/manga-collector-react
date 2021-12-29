@@ -1,14 +1,12 @@
+import ReactDom from "react-dom";
 import React from "react";
 import { Modal } from "react-bootstrap";
 
-const SearchModal = ({ book, show, setShow }) => {
-  const handleClose = () => {
-    setShow(false);
-  };
+const SearchModal = ({ book, show, onClose, key }) => {
 
-  return (
-    <Modal show={show} onHide={handleClose}>
-      <Modal.Header closeButton />
+  return ReactDom.createPortal(
+    <Modal key={key} show={show}>
+      <Modal.Header closeButton onClick={onClose} />
       <Modal.Title>{book.title}</Modal.Title>
       <Modal.Body className={"modal-container"}>
         <img
@@ -21,7 +19,8 @@ const SearchModal = ({ book, show, setShow }) => {
           <p>{book.description}</p>
         </section>
       </Modal.Body>
-    </Modal>
+    </Modal>,
+    document.getElementById("portal")
   );
 };
 
